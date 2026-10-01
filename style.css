@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+:root {
+  --bg-dark: #0a0c10;
+  --accent-1: #ff007f;
+  --accent-2: #99118e;
+  --accent-3: #9b1d7b;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #922792;
+  --text-secondary: #a34d98;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  padding: 3rem 1rem 1.5rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* --- ESTRUTURA DAS ABAS --- */
+
+/* Esconde os inputs de rádio */
+input[type="radio"] {
+  display: none;
+}
+
+.tabs-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 1rem auto;
+  flex: 1;
+}
+
+/* Botões das Abas */
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+/* Painéis de Conteúdo */
+.tab-pane {
+  display: none; /* Esconde todos os painéis por defeito */
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+section {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+ul li {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+ul li::before {
+  content: "→";
+  color: var(--accent-3);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* --- LÓGICA DE ALTERNÂNCIA DAS ABAS EM CSS --- */
+
+#tab1:checked ~ .tab-buttons label[for="tab1"],
+#tab2:checked ~ .tab-buttons label[for="tab2"] {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+}
+
+#tab1:checked ~ .tab-content .pane-1,
+#tab2:checked ~ .tab-content .pane-2 {
+  display: block; /* Exibe a aba selecionada */
+}
+
+/* Animação ao trocar de aba */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rodapé */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--glass-border);
+  margin-top: auto;
+}
